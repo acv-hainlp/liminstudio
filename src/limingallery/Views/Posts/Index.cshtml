@@ -1,0 +1,22 @@
+﻿@model IEnumerable<limingallery.Models.Post>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered table-hover" style="margin-top:15px">
+    <thead>
+        <tr>
+            <th>All Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+            </tr>
+        }
+    </tbody>
+</table>
