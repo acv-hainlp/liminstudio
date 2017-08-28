@@ -20,7 +20,7 @@ namespace limingallery.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; } //connect to table Posts
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

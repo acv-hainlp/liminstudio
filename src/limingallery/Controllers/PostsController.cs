@@ -1,6 +1,7 @@
 ﻿using limingallery.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,11 +23,13 @@ namespace limingallery.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            var posts = _context.Posts.ToList();
+            var posts = _context.Posts
+                .Include(p => p.PostType)
+                .ToList();
             return View(posts);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             var post = _context.Posts.SingleOrDefault(p => p.Id == id);
             if (post == null)
