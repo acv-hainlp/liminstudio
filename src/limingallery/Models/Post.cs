@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Web;
+
 
 namespace limingallery.Models
 {
@@ -11,10 +14,27 @@ namespace limingallery.Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
-        public bool IsActive { get; set; }
+        
+        public string Description { get; set; }
+        public bool IsActive { get; set; } = true;
 
         //Add Postype Belongs-To
-        public int PostTypeId { get; set; }
-        public PostType PostType { get; set; }
+        //public int PostTypeId { get; set; }
+        //public PostType PostType { get; set; }
+
+        //Post Belongs-To User
+        //public int AspNetUsersId { get; set; }
+        //public ApplicationUser ApplicationUser { get; set; }
+       
+        [Required][NotMapped]
+        public HttpPostedFileBase File { get; set; }
+
+        public string ImageUrl()
+        {
+            var fileName = Title.ToLower() + ".png";
+            fileName = fileName.Replace(" ", "");
+            var path = "/Content/Images/uploads/" + fileName;
+            return path;
+        }
     }
 }

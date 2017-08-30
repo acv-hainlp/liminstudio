@@ -3,7 +3,7 @@ namespace limingallery.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitalModel : DbMigration
+    public partial class TestPost : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,8 @@ namespace limingallery.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
+                        Title = c.String(nullable: false),
+                        Description = c.String(),
                         IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

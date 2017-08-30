@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<limingallery.Models.Post>
 
 @{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = "All Post";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
         {
             <tr>
                 <td>@post.Title</td>
-                <td>@post.PostType.Type </td>
+                <td><img src="@post.ImageUrl()" alt="Alternate Text" style="max-height:100px"/></td>
             </tr>
         }
     </tbody>

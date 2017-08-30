@@ -7,13 +7,13 @@ namespace limingallery.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddMoreDataConvenstion : IMigrationMetadata
+    public sealed partial class TestPost : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMoreDataConvenstion));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TestPost));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708280929196_AddMoreDataConvenstion"; }
+            get { return "201708300943269_TestPost"; }
         }
         
         string IMigrationMetadata.Source
