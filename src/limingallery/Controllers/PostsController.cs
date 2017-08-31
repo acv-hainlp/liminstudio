@@ -21,7 +21,27 @@ namespace limingallery.Controllers
         {
             _context.Dispose(); // release memory
         }
-        // GET: Posts
+
+        [AllowAnonymous]
+        public ActionResult Index()
+        {
+            var posts = _context.Posts.ToList();
+            return View(posts);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Details(int id)
+        {
+            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+
+            if (post == null)
+            {
+                return HttpNotFound("Not found");
+            }
+            return View(post);
+        }
+
+        [Authorize(Roles = "Boss")]
         public ActionResult Create()
         {
             return View(); 
@@ -49,23 +69,6 @@ namespace limingallery.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Index()
-        {
-            var posts = _context.Posts.ToList();
-            return View(posts);
-        }
-
-        public ActionResult Details(int id)
-        {
-            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
-
-            if (post == null)
-            {
-                return HttpNotFound("Not found");
-            }
-            return View(post);
         }
 
         public ActionResult Edit(int id)
