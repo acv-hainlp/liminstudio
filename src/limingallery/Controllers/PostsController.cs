@@ -67,5 +67,17 @@ namespace limingallery.Controllers
             }
             return View(post);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+
+            if (post == null)
+            {
+                return HttpNotFound("Not found");
+            }
+
+            return HttpNotFound("Not found");
+        }
     }
 }

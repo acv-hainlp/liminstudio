@@ -22,10 +22,9 @@ namespace limingallery.Models
         //public int PostTypeId { get; set; }
         //public PostType PostType { get; set; }
 
-        //Post Belongs-To User
-        //public int AspNetUsersId { get; set; }
-        //public ApplicationUser ApplicationUser { get; set; }
-       
+        public int UsersId { get; set; }
+        public ApplicationUser User { get; set; }
+
         [Required][NotMapped]
         public HttpPostedFileBase File { get; set; }
 
