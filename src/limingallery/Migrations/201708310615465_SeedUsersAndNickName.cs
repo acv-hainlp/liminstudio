@@ -3,7 +3,7 @@ namespace limingallery.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SeedUsers : DbMigration
+    public partial class SeedUsersAndNickName : DbMigration
     {
         public override void Up()
         {
@@ -18,10 +18,12 @@ INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'c6b113d8-d9db
 INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'c349ba56-c15e-45b3-8f8b-480b238720f0', N'df9db8e1-f53b-43a7-b54a-bc08f6340d3b')
 
 ");
+            AddColumn("dbo.AspNetUsers", "NickName", c => c.String(nullable: false, maxLength: 255));
         }
         
         public override void Down()
         {
+            DropColumn("dbo.AspNetUsers", "NickName");
         }
     }
 }

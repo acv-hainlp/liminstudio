@@ -7,13 +7,13 @@ namespace limingallery.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeedUsers : IMigrationMetadata
+    public sealed partial class InitialPosts : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialPosts));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708310553242_SeedUsers"; }
+            get { return "201708310613491_InitialPosts"; }
         }
         
         string IMigrationMetadata.Source

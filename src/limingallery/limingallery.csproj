@@ -199,13 +199,13 @@
     <Compile Include="Migrations\201708280420153_InitialCreate.Designer.cs">
       <DependentUpon>201708280420153_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708310540450_AddPostTable.cs" />
-    <Compile Include="Migrations\201708310540450_AddPostTable.Designer.cs">
-      <DependentUpon>201708310540450_AddPostTable.cs</DependentUpon>
+    <Compile Include="Migrations\201708310613491_InitialPosts.cs" />
+    <Compile Include="Migrations\201708310613491_InitialPosts.Designer.cs">
+      <DependentUpon>201708310613491_InitialPosts.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708310553242_SeedUsers.cs" />
-    <Compile Include="Migrations\201708310553242_SeedUsers.Designer.cs">
-      <DependentUpon>201708310553242_SeedUsers.cs</DependentUpon>
+    <Compile Include="Migrations\201708310615465_SeedUsersAndNickName.cs" />
+    <Compile Include="Migrations\201708310615465_SeedUsersAndNickName.Designer.cs">
+      <DependentUpon>201708310615465_SeedUsersAndNickName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -300,11 +300,11 @@
     <EmbeddedResource Include="Migrations\201708280420153_InitialCreate.resx">
       <DependentUpon>201708280420153_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708310540450_AddPostTable.resx">
-      <DependentUpon>201708310540450_AddPostTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708310613491_InitialPosts.resx">
+      <DependentUpon>201708310613491_InitialPosts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708310553242_SeedUsers.resx">
-      <DependentUpon>201708310553242_SeedUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708310615465_SeedUsersAndNickName.resx">
+      <DependentUpon>201708310615465_SeedUsersAndNickName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

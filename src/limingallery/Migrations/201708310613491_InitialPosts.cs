@@ -3,7 +3,7 @@ namespace limingallery.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddPostTable : DbMigration
+    public partial class InitialPosts : DbMigration
     {
         public override void Up()
         {

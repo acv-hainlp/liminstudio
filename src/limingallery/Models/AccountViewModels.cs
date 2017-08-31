@@ -65,6 +65,10 @@ namespace limingallery.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Nickname")]
+        public string NickName { get; set; } //add more profile
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
