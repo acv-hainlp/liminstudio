@@ -41,13 +41,14 @@ namespace limingallery.Controllers
             return View(post);
         }
 
-        [Authorize(Roles = "Boss")]
+        [Authorize]
         public ActionResult Create()
         {
             return View(); 
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Post Post)
         {
             if(!ModelState.IsValid)
@@ -71,6 +72,7 @@ namespace limingallery.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);
