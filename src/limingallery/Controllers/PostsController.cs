@@ -1,7 +1,9 @@
 ﻿using limingallery.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -25,7 +27,9 @@ namespace limingallery.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var posts = _context.Posts.ToList();
+            var posts = _context.Posts
+                .Include(p=>p.User) //join public ApplicationUser User { get; set; }
+                .ToList();
             return View(posts);
         }
 
@@ -66,6 +70,7 @@ namespace limingallery.Controllers
                 Post.File.SaveAs(path);
             }
 
+            Post.UserId = User.Identity.GetUserId();
             _context.Posts.Add(Post);
             _context.SaveChanges();
 

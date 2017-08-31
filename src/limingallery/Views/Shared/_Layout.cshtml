@@ -22,14 +22,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("All Posts", "Index", "Posts")</li>
+                    <li>@Html.ActionLink("New Image", "Create", "Posts")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top: 50px">
         @RenderBody()
         <hr />
         <footer>

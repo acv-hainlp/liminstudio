@@ -22,7 +22,7 @@ namespace limingallery.Models
         //public int PostTypeId { get; set; }
         //public PostType PostType { get; set; }
 
-        public int UsersId { get; set; }
+        public string UserId { get; set; } //convention FK // must User not Users
         public ApplicationUser User { get; set; }
 
         [Required][NotMapped]
