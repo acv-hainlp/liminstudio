@@ -7,10 +7,13 @@
 <div class="container marketing">
     <section id="blog-landing">
         @foreach (var post in Model)
-        { 
+        {
             <article class="white-panel">
-                <img src="@post.ImageUrl()" alt="ALT">
-                <h1><a href="#">@post.Title</a></h1>
+                <a href="@Url.Action("Details", "Posts", new { Id = post.Id })">
+                    <img src="@post.ImageUrl()" alt="ALT">
+                </a>
+
+                <h1>@Html.ActionLink(post.Title, "Details", "Posts", new { Id = post.Id }, null)</h1>
                 <p>By @post.User.NickName</p>
                 <p>@post.Description</p>
             </article>
