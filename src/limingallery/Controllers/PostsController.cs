@@ -55,14 +55,13 @@ namespace limingallery.Controllers
         [Authorize]
         public ActionResult Create(Post Post)
         {
-            if(!ModelState.IsValid)
+            if(!ModelState.IsValid )
             {
                 return View();
             }
 
-           
             // Use your file here
-            if (Post.File.ContentLength > 0 )
+            if (Post.File.ContentLength > 0)
             {
                 Post.CreateOn = DateTime.Now;
                 Post.UserId = User.Identity.GetUserId();

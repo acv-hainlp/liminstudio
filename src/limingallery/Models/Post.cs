@@ -25,6 +25,7 @@ namespace limingallery.Models
 
         [Required(ErrorMessage = "Bạn cần chọn tranh để tải lên")][NotMapped]
         [Display(Name ="Tải tranh")]
+        [MaxFileSizeValidation] //custom validation
         public HttpPostedFileBase File { get; set; }
 
         public string ImageName { get; set; }
