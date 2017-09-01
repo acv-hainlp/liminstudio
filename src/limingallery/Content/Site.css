@@ -3,7 +3,6 @@
 }
 
 #blog-landing {
-    margin-top: 81px;
     position: relative;
     max-width: 100%;
     width: 100%;
@@ -38,3 +37,11 @@ img {
         -o-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }
+
+.field-validation-error{
+    color:red;
+}
+
+.input-validation-error{
+    border: 2px solid red;
+}

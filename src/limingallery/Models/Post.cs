@@ -16,11 +16,15 @@ namespace limingallery.Models
         public string UserId { get; set; } //convention FK // must User not Users
         public ApplicationUser User { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập tiêu đề của tranh")]
+        [Display(Name = "Tiêu đề của tranh")]
         public string Title { get; set; }
+
+        [Display(Name = "Mô tả ngắn của tranh")]
         public string Description { get; set; }
 
-        [Required][NotMapped]
+        [Required(ErrorMessage = "Bạn cần chọn tranh để tải lên")][NotMapped]
+        [Display(Name ="Tải tranh")]
         public HttpPostedFileBase File { get; set; }
 
         public string ImageName { get; set; }

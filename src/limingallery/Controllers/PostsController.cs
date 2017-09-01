@@ -60,19 +60,19 @@ namespace limingallery.Controllers
                 return View();
             }
 
+           
             // Use your file here
-            if (Post.File.ContentLength > 0)
+            if (Post.File.ContentLength > 0 )
             {
-                //var fileName = Path.GetFileName(Post.File.FileName);
-                var fileName = Post.Title.ToLower() + ".png";
-                fileName = fileName.Replace(" ", "");
-                var path = Path.Combine(Server.MapPath("~/Content/Images/uploads"), fileName);
+                Post.CreateOn = DateTime.Now;
+                Post.UserId = User.Identity.GetUserId();
+                Post.ImageName = User.Identity.GetUserId() + (DateTime.Now.Ticks).ToString() + ".png";
+                var path = Path.Combine(Server.MapPath("~/Content/Images/uploads"), Post.ImageName);
                 Post.File.SaveAs(path);
-            }
 
-            Post.UserId = User.Identity.GetUserId();
-            _context.Posts.Add(Post);
-            _context.SaveChanges();
+                _context.Posts.Add(Post);
+                _context.SaveChanges();
+            }
 
             return RedirectToAction("Index");
         }
