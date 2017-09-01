@@ -88,5 +88,24 @@ namespace limingallery.Controllers
 
             return HttpNotFound("Not found");
         }
+
+        [Authorize]
+        public ActionResult Delete(int id)
+        {
+            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+
+            if (post == null)
+            {
+                return HttpNotFound("Not found");
+            }
+
+            if (post.UserId == User.Identity.GetUserId())
+            {
+                _context.Posts.Remove(post);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
