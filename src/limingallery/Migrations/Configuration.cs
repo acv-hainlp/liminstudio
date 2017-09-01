@@ -10,7 +10,6 @@ namespace limingallery.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "limingallery.Models.ApplicationDbContext";
         }
 
         protected override void Seed(limingallery.Models.ApplicationDbContext context)
