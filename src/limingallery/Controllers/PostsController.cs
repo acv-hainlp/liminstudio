@@ -45,14 +45,12 @@ namespace limingallery.Controllers
             return View(post);
         }
 
-        [Authorize]
         public ActionResult Create()
         {
             return View(); 
         }
 
         [HttpPost]
-        [Authorize]
         public ActionResult Create(Post Post)
         {
             if(!ModelState.IsValid )
@@ -76,7 +74,6 @@ namespace limingallery.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
         public ActionResult Edit(int id)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);
@@ -86,24 +83,46 @@ namespace limingallery.Controllers
                 return HttpNotFound("Not found");
             }
 
-            return HttpNotFound("Not found");
+            return View(post);
         }
 
-        [Authorize]
+        [HttpPost]
+		public ActionResult Edit(Post post)
+		{
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            //var postInDB = _context.Posts.SingleOrDefault(p => p.Id == post.Id);
+            _context.Posts.Attach(post);
+            var postEntry = _context.Entry(post);
+            postEntry.State = EntityState.Modified;
+            //postEntry.Property("Title").IsModified = false; // disable Title change
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+		}
+
         public ActionResult Delete(int id)
         {
-            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+            var post = new Post() { Id = id };
+            _context.Entry(post).State = EntityState.Deleted;
 
-            if (post == null)
-            {
-                return HttpNotFound("Not found");
-            }
+            _context.SaveChanges();
 
-            if (post.UserId == User.Identity.GetUserId())
-            {
-                _context.Posts.Remove(post);
-                _context.SaveChanges();
-            }
+            //var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+
+            //if (post == null)
+            //{
+            //    return HttpNotFound("Not found");
+            //}
+
+            //if (post.UserId == User.Identity.GetUserId())
+            //{
+            //    _context.Posts.Remove(post);
+            //    _context.SaveChanges();
+            //}
 
             return RedirectToAction("Index");
         }

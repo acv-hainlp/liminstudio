@@ -21,6 +21,7 @@
             @Html.LabelFor(p=>p.Description)
             @Html.TextAreaFor(p=>p.Description, new {@class= "form-control" })
         </div>
+	        @Html.Hidden(p=>p.Id, Model.Id)
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 }
