@@ -15,4 +15,9 @@
     }
 }
 
+@foreach (var comment in Model.Comments)
+{
+    <h1 class="bg-primary">@comment.User.NickName</h1><h2>@comment.Content</h2> 
+}
+
 @Html.Partial("~/Views/Comments/_CreateComment.cshtml")

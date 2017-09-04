@@ -5,6 +5,7 @@
     <div class="form-group">
         @Html.LabelFor(p => p.Comment.Content)
         @Html.TextAreaFor(p => p.Comment.Content, new { @class = "form-control" })
+        @Html.HiddenFor(p =>p.Comment.PostId, new { Value = Model.Post.Id })
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

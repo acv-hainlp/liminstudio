@@ -38,6 +38,9 @@ namespace limingallery.Controllers
         public ActionResult Details(int id)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+            var comments = _context.Comments.Where(c => c.PostId == id)
+                .Include(c => c.User)
+                .ToList();
 
             if (post == null)
             {
@@ -47,6 +50,7 @@ namespace limingallery.Controllers
             var viewModel = new PostCommentViewModes
             {
                 Post = post,
+                Comments = comments
             };
 
             return View(viewModel);
@@ -61,7 +65,6 @@ namespace limingallery.Controllers
         [HttpPost]
         public ActionResult Create(Post Post)
         {
-            
             if (!ModelState.IsValid)
             {
                 return View();
@@ -99,7 +102,6 @@ namespace limingallery.Controllers
         public ActionResult Edit(int id, string title, string description)
         {
             {
-
                 var post = _context.Posts.SingleOrDefault(p => p.Id == id);
 
                 _context.Posts.Attach(post);
