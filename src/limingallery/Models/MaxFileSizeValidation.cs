@@ -13,9 +13,14 @@ namespace limingallery.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var post = (Post)validationContext.ObjectInstance;
+            if(post.File == null)
+            {
+                return new ValidationResult("Bạn chưa chọn tranh để đăng");
+            }
+
             if (post.File.ContentLength > _maxFileSize)
             {
-                return new ValidationResult("Tranh bạn tải phải nhỏ hơn 2mb");
+                return new ValidationResult("Tranh bạn tải lên phải nhỏ hơn 2mb");
             }
 
             return ValidationResult.Success;

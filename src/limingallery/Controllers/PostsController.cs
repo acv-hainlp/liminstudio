@@ -52,10 +52,10 @@ namespace limingallery.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public ActionResult Create(Post Post)
         {
-            if(!ModelState.IsValid )
+            
+            if (!ModelState.IsValid)
             {
                 return View();
             }
@@ -85,12 +85,38 @@ namespace limingallery.Controllers
                 return HttpNotFound("Not found");
             }
 
-            return HttpNotFound("Not found");
+            return View(post);
         }
 
-        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(int id, string title, string description)
+        {
+            {
+
+                var post = _context.Posts.SingleOrDefault(p => p.Id == id);
+
+                _context.Posts.Attach(post);
+
+                post.Title = title;
+                post.Description = description;
+                _context.Entry(post).State = EntityState.Modified;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
         public ActionResult Delete(int id)
         {
+            //var post = new Post() { Id = id };
+            //var path = Path.Combine(Server.MapPath("~/Content/Images/uploads"), post.ImageName);
+            //System.IO.File.Delete(path);
+
+            //_context.Entry(post).State = EntityState.Deleted;
+
+            //_context.SaveChanges();
+
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);
 
             if (post == null)

@@ -23,7 +23,7 @@ namespace limingallery.Models
         [Display(Name = "Mô tả ngắn của tranh")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Bạn cần chọn tranh để tải lên")][NotMapped]
+        [NotMapped]
         [Display(Name ="Tải tranh")]
         [MaxFileSizeValidation] //custom validation
         public HttpPostedFileBase File { get; set; }
