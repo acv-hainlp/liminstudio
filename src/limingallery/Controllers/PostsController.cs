@@ -76,7 +76,6 @@ namespace limingallery.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
         public ActionResult Edit(int id)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Id == id);
@@ -101,6 +100,8 @@ namespace limingallery.Controllers
 
             if (post.UserId == User.Identity.GetUserId())
             {
+                var path = Path.Combine(Server.MapPath("~/Content/Images/uploads"), post.ImageName);
+                System.IO.File.Delete(path);
                 _context.Posts.Remove(post);
                 _context.SaveChanges();
             }
