@@ -29,7 +29,8 @@ namespace limingallery.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Post");
+                return RedirectToAction("Details", new RouteValueDictionary(
+                new { controller = "Posts", action = "Details", Id = comment.PostId }));
             }
 
             comment.UserId = User.Identity.GetUserId();
