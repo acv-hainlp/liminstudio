@@ -1,0 +1,12 @@
+﻿@model limingallery.ViewModels.PostCommentViewModes
+
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Comment.Content)
+        @Html.TextAreaFor(p => p.Comment.Content, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+}

@@ -17,6 +17,7 @@ namespace limingallery.Models
         public ApplicationUser User { get; set; }
 
         [Required]
+        [Display(Name = "Comment của bạn")]
         public string Content { get; set; }
         public DateTime CreateOn { get; set; }
 

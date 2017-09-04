@@ -1,16 +1,18 @@
-﻿@using Microsoft.AspNet.Identity;
-@model limingallery.Models.Post
+﻿@using Microsoft.AspNet.Identity; 
+@model limingallery.ViewModels.PostCommentViewModes
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Title</h2>
-<img src="@Model.ImageUrl()" alt="Alternate Text" />
+<h2>@Model.Post.Title</h2>
+<img src="@Model.Post.ImageUrl()" alt="Alternate Text" />
 
 @{ 
-    if (Model.UserId == User.Identity.GetUserId())
+    if (Model.Post.UserId == User.Identity.GetUserId())
     {
-        @Html.ActionLink("Delete", "Delete", "Posts", new { Id = Model.Id }, null)
+        @Html.ActionLink("Delete", "Delete", "Posts", new { Id = Model.Post.Id }, null)
     }
 }
+
+@Html.Partial("~/Views/Comments/_CreateComment.cshtml")

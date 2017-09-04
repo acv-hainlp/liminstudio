@@ -1,4 +1,5 @@
 ﻿using limingallery.Models;
+using limingallery.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,13 @@ namespace limingallery.Controllers
             {
                 return HttpNotFound("Not found");
             }
-            return View(post);
+
+            var viewModel = new PostCommentViewModes
+            {
+                Post = post,
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]
