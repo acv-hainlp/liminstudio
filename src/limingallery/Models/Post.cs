@@ -32,6 +32,8 @@ namespace limingallery.Models
         public bool IsActive { get; set; } = true;
         public DateTime CreateOn { get; set; }
 
+        public ICollection<Like> Likes { get; set; } // Likes is child of Post, use to include when index
+
         public string ImageUrl()
         {
             var path = "/Content/Images/uploads/" + ImageName;

@@ -30,6 +30,7 @@ namespace limingallery.Controllers
         {
             var posts = _context.Posts
                 .Include(p=>p.User) //join public ApplicationUser User { get; set; }
+                .Include(p => p.Likes) // join Likes 
                 .ToList();
             return View(posts);
         }

@@ -17,6 +17,8 @@
                 <p>By @post.User.NickName</p>
                 <p>@post.Description</p>
 
+                <h1>@post.Likes.Count</h1>
+
 
                 @using (Html.BeginForm("Create", "Likes", FormMethod.Post))
                 {

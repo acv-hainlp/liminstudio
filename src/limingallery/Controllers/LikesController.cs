@@ -17,6 +17,11 @@ namespace limingallery.Controllers
             _context = new ApplicationDbContext();
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose(); // release memory
+        }
+
         public ActionResult Create()
         {
             return View();
