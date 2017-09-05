@@ -18,6 +18,10 @@
 @foreach (var comment in Model.Comments)
 {
     <h1 class="bg-primary">@comment.User.NickName</h1><h2>@comment.Content</h2> 
+    if(comment.UserId == User.Identity.GetUserId())
+    { 
+        @Html.ActionLink("Delete", "Delete", "Comments", new { Id = comment.Id }, null)
+    }
 }
 
 @Html.Partial("~/Views/Comments/_CreateComment.cshtml")

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,6 +43,18 @@ namespace limingallery.Controllers
              new { controller = "Posts", action = "Details", Id = comment.PostId }));
         }
 
+        public ActionResult Delete(int id )
+        {
+            var comment = new Comment { Id = id };
+
+            _context.Comments.Attach(comment);
+            _context.Entry(comment).State = EntityState.Deleted;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Posts");
+
+        }
 
     }
 }
