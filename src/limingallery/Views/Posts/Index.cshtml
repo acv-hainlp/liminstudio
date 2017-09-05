@@ -1,4 +1,4 @@
-﻿@model IEnumerable<limingallery.Models.Post>
+﻿@model IEnumerable<limingallery.limingallery.Models.Post>
 
 @{
     ViewBag.Title = "All Post";
@@ -16,6 +16,14 @@
                 <h1>@Html.ActionLink(post.Title, "Details", "Posts", new { Id = post.Id }, null)</h1>
                 <p>By @post.User.NickName</p>
                 <p>@post.Description</p>
+
+
+                @using (Html.BeginForm("Create", "Likes", FormMethod.Post))
+                {
+                    @Html.Hidden("postId", @post.Id)
+                    <button type="submit" class="btn btn-primary">Like</button>
+                }
+
             </article>
         }
     </section>
