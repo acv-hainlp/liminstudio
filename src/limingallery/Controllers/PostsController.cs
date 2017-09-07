@@ -105,14 +105,20 @@ namespace limingallery.Controllers
         public ActionResult Edit(int id, string title, string description)
         {
             {
+                if (string.IsNullOrEmpty(title))
+                {
+                    return RedirectToAction("Index");
+                }
+
                 var post = _context.Posts.SingleOrDefault(p => p.Id == id);
 
                 _context.Posts.Attach(post);
-
                 post.Title = title;
                 post.Description = description;
-                _context.Entry(post).State = EntityState.Modified;
 
+                //_context.Entry(post).State = EntityState.Modified;
+                //_context.Entry(post).Property(p => p.File).IsModified = false;
+                _context.Configuration.ValidateOnSaveEnabled = false; //disable validation
                 _context.SaveChanges();
 
                 return RedirectToAction("Index");
