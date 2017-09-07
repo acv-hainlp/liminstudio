@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<limingallery.Models.Post>
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "All Post";
@@ -8,6 +9,7 @@
     <section id="blog-landing">
         @foreach (var post in Model)
         {
+            bool isLiked = false;
             <article class="white-panel">
                 <a href="@Url.Action("Details", "Posts", new { Id = post.Id })">
                     <img src="@post.ImageUrl()" alt="ALT">
@@ -19,11 +21,15 @@
 
                 <h1>@post.Likes.Count</h1>
 
+                @foreach (var like in post.Likes)
+                {
+                    if (like.UserId == User.Identity.GetUserId()) { isLiked = true; }
+                }
 
                 @using (Html.BeginForm("Create", "Likes", FormMethod.Post))
                 {
                     @Html.Hidden("postId", @post.Id)
-                    <button type="submit" class="btn btn-primary">Like</button>
+                    <button type="submit" class="btn @(!isLiked ? "btn-info" : "btn-warning")">@(!isLiked ? "Like" : "Unlike")</button>
                 }
 
             </article>
