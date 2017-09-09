@@ -3,10 +3,22 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isLiked = false;
 }
 
 <h2>@Model.Post.Title</h2>
 <img src="@Model.Post.ImageUrl()" alt="Alternate Text" />
+
+@foreach (var like in Model.Post.Likes)
+{
+    if (like.UserId == User.Identity.GetUserId()) { isLiked = true; }
+}
+
+@using (Html.BeginForm("Create", "Likes", FormMethod.Post))
+{
+    @Html.Hidden("postId", Model.Post.Id)
+    <button type="submit" class="btn btn-xs @(!isLiked ? "btn-info" : "btn-info active")">@(!isLiked ? "Like" : "Unlike")</button>
+}
 
 @{ 
     if (Model.Post.UserId == User.Identity.GetUserId())

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace limingallery.Controllers
 {
@@ -10,7 +11,13 @@ namespace limingallery.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Posts");
+            }
+
+            return RedirectToAction("Login", "Account");
+
         }
 
         public ActionResult About()

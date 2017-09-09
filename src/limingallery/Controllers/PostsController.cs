@@ -40,7 +40,9 @@ namespace limingallery.Controllers
         {
             if(id == null) return RedirectToAction("Index");
 
-            var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+            var post = _context.Posts
+                .Include(p=>p.Likes)
+                .FirstOrDefault(p => p.Id == id);
             var comments = _context.Comments.Where(c => c.PostId == id)
                 .Include(c => c.User)
                 .ToList();
