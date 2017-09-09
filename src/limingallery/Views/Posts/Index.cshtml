@@ -12,10 +12,10 @@
             bool isLiked = false;
             <article class="white-panel">
                 <a href="@Url.Action("Details", "Posts", new { Id = post.Id })">
-                    <img src="@post.ImageUrl()" alt="ALT" class="img-thumbnail">
+                    <img src="@post.ImageUrl()" alt="ALT">
                 </a>
 
-                <div class="container-fluid" style="margin-top:5px; margin-bottom:5px">
+                <div class="container-fluid" style="margin-top:10px; margin-bottom:40px; padding: 0px 10px">
                     <div class="pull-left"><strong class="text-primary">@post.User.NickName</strong></div>
                     <div class="pull-right">
                         @foreach (var like in post.Likes)
@@ -26,7 +26,7 @@
                         @using (Html.BeginForm("Create", "Likes", FormMethod.Post))
                         {
                             @Html.Hidden("postId", @post.Id)
-                            <button type="submit" class="btn btn-xs @(!isLiked ? "btn-info" : "btn-info active")">@(!isLiked ? "Like" : "Unlike")</button>
+                            <button type="submit" class="btn btn-xs @(!isLiked ? "btn-primary" : "btn-primary` active")">@(!isLiked ? "Like" : "Unlike")</button>
                         }
                     </div>
                 </div>

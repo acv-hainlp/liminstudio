@@ -6,8 +6,25 @@
     bool isLiked = false;
 }
 
+<div class="">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="text-center">
+                <img src="@Model.Post.ImageUrl()" alt="Alternate Text" class="img-details" />
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <h2>@Model.Post.Title</h2>
-<img src="@Model.Post.ImageUrl()" alt="Alternate Text" />
+
 
 @foreach (var like in Model.Post.Likes)
 {

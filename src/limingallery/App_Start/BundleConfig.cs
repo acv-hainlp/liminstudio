@@ -25,7 +25,7 @@ namespace limingallery
                       "~/Scripts/pinterest_grid.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-flat.min.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
             
         }
