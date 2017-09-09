@@ -49,16 +49,17 @@ namespace limingallery.Controllers
                 _context.Likes.Add(like);
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", "Posts");
+                return RedirectToAction("Details", new RouteValueDictionary(
+                    new { controller = "Posts", action = "Details", Id = postId }));
 
             }
 
             //delete if like is exit
             return RedirectToAction("Delete", new RouteValueDictionary(
-             new { controller = "Likes", action = "Delete", Id = findLike.Id }));
+             new { controller = "Likes", action = "Delete", id = findLike.Id, postId = postId }));
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int postId)
         {
             Like like = new Like { Id = id };
             _context.Likes.Attach(like);
@@ -66,7 +67,8 @@ namespace limingallery.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Posts");
+            return RedirectToAction("Details", new RouteValueDictionary(
+                    new { controller = "Posts", action = "Details", Id = postId }));
         }
     }
 }

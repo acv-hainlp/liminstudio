@@ -8,12 +8,67 @@
 
 <div class="">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="text-center">
                 <img src="@Model.Post.ImageUrl()" alt="Alternate Text" class="img-details" />
             </div>
         </div>
-        <div class="col-md-3"></div>
+
+        <div class="col-md-4" style="background:#222">
+            <div class="container-fluid" style="padding:20px">
+                <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/21077659_1688767994466912_6543688498979365474_n.jpg?oh=83fc75309506e242aba6c5d934b72647&oe=5A49D598" class="img-responsive img-circle" style="max-height:50px; max-width:50px; display:inline"/>
+                <a href="#" style="font-size:20px; margin-left:7px;">@Model.Post.User.NickName</a>
+                <hr />
+
+                @*like button*@
+                @foreach (var like in Model.Post.Likes)
+                {
+                    if (like.UserId == User.Identity.GetUserId()) { isLiked = true; }
+                }
+
+                @using (Html.BeginForm("Create", "Likes", FormMethod.Post, new { style="display:inline" }))
+                {
+                    @Html.Hidden("postId", Model.Post.Id)
+                    <button type="submit" class="btn @(!isLiked ? "btn-info" : "btn-info active")">@(!isLiked ? "Thích" : "Bỏ Thích")</button>
+                }
+
+                @*end like button*@
+
+                @*Delete & Edit Post*@
+                @{
+                    if (Model.Post.UserId == User.Identity.GetUserId())
+                    {
+                        <a class="btn btn-warning" href="@Url.Action("Edit", "Posts", new { Id = Model.Post.Id },null)">Edit</a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Posts", new { Id = Model.Post.Id },null)">Delete</a>
+                    }
+                }
+                @*End Delete & Edit Post*@
+
+                <h2 style="color:white">@Model.Post.Title</h2>
+                <p style="color:white">@Model.Post.Description</p>
+
+                <em style="color:#808080">Đăng ngày @Model.Post.CreateOn</em>
+
+                <div style="color:#808080">
+                    <i class="fa fa-thumbs-up" style="font-size:12px"></i>
+                    <span>@Model.Post.Likes.Count Likes</span>&nbsp;
+                    <i class="fa fa-comment" style="font-size:12px"></i>
+                    <span>@Model.Comments.Count Comments</span><br />
+                </div>
+                @Html.Partial("~/Views/Comments/_CreateComment.cshtml")
+
+                @foreach (var comment in Model.Comments)
+                {
+                    <div>
+                        <span class="bg-primary">@comment.User.NickName : </span><span>@comment.Content</span>
+                        @if (comment.UserId == User.Identity.GetUserId())
+                        {
+                        @Html.ActionLink("Delete", "Delete", "Comments", new { Id = comment.Id }, null)
+                        }
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
@@ -23,34 +78,3 @@
 
 
 
-<h2>@Model.Post.Title</h2>
-
-
-@foreach (var like in Model.Post.Likes)
-{
-    if (like.UserId == User.Identity.GetUserId()) { isLiked = true; }
-}
-
-@using (Html.BeginForm("Create", "Likes", FormMethod.Post))
-{
-    @Html.Hidden("postId", Model.Post.Id)
-    <button type="submit" class="btn btn-xs @(!isLiked ? "btn-info" : "btn-info active")">@(!isLiked ? "Like" : "Unlike")</button>
-}
-
-@{ 
-    if (Model.Post.UserId == User.Identity.GetUserId())
-    {
-        @Html.ActionLink("Delete", "Delete", "Posts", new { Id = Model.Post.Id }, null)
-    }
-}
-
-@foreach (var comment in Model.Comments)
-{
-    <h1 class="bg-primary">@comment.User.NickName</h1><h2>@comment.Content</h2> 
-    if(comment.UserId == User.Identity.GetUserId())
-    { 
-        @Html.ActionLink("Delete", "Delete", "Comments", new { Id = comment.Id }, null)
-    }
-}
-
-@Html.Partial("~/Views/Comments/_CreateComment.cshtml")

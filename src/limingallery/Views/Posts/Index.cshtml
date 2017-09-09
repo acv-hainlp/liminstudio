@@ -18,21 +18,12 @@
                 <div class="container-fluid" style="margin-top:10px; margin-bottom:40px; padding: 0px 10px">
                     <div class="pull-left"><strong class="text-primary">@post.User.NickName</strong></div>
                     <div class="pull-right">
-                        @foreach (var like in post.Likes)
-                        {
-                            if (like.UserId == User.Identity.GetUserId()) { isLiked = true; }
-                        }
-
-                        @using (Html.BeginForm("Create", "Likes", FormMethod.Post))
-                        {
-                            @Html.Hidden("postId", @post.Id)
-                            <button type="submit" class="btn btn-xs @(!isLiked ? "btn-primary" : "btn-primary` active")">@(!isLiked ? "Like" : "Unlike")</button>
-                        }
+                        <span style="color:#bbbebe">@post.Comments.Count</span>
+                        <i class="fa fa-comment" style="font-size:15px;color:#bbbebe"></i>
+                        <span style="color:#bbbebe">@post.Likes.Count</span>
+                        <i class="fa fa-heart" style="font-size:15px;color:#0094ff"></i>
                     </div>
                 </div>
-
-
-
             </article>
         }
     </section>

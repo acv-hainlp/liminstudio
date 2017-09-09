@@ -1,13 +1,12 @@
 ﻿@model limingallery.ViewModels.PostCommentViewModes
 
-@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { style="margin-top:5px;"}))
 {
     <div class="form-group">
-        @Html.LabelFor(p => p.Comment.Content)
-        @Html.TextAreaFor(p => p.Comment.Content, new { @class = "form-control" })
+        @Html.TextAreaFor(p => p.Comment.Content, new { @class = "form-control" , placeholder="Comment.." })
         @Html.HiddenFor(p =>p.Comment.PostId, new { Value = Model.Post.Id })
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Đăng</button>
 
 }

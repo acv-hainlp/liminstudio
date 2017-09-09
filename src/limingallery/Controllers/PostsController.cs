@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace limingallery.Controllers
 {
@@ -31,6 +32,7 @@ namespace limingallery.Controllers
             var posts = _context.Posts
                 .Include(p=>p.User) //join public ApplicationUser User { get; set; }
                 .Include(p => p.Likes) // join Likes 
+                .Include(p=>p.Comments)
                 .ToList();
             return View(posts);
         }
@@ -42,6 +44,8 @@ namespace limingallery.Controllers
 
             var post = _context.Posts
                 .Include(p=>p.Likes)
+                .Include(p=>p.Comments)
+                .Include(p=>p.User)
                 .FirstOrDefault(p => p.Id == id);
             var comments = _context.Comments.Where(c => c.PostId == id)
                 .Include(c => c.User)
@@ -109,7 +113,8 @@ namespace limingallery.Controllers
             {
                 if (string.IsNullOrEmpty(title))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new RouteValueDictionary(
+                        new { controller = "Posts", action = "Details", Id = id }));
                 }
 
                 var post = _context.Posts.SingleOrDefault(p => p.Id == id);
@@ -123,7 +128,8 @@ namespace limingallery.Controllers
                 _context.Configuration.ValidateOnSaveEnabled = false; //disable validation
                 _context.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new RouteValueDictionary(
+                    new { controller = "Posts", action = "Details", Id = id }));
             }
         }
 
