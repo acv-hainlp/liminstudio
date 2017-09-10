@@ -5,22 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Edit", "Posts", FormMethod.Post))
-{
-    <form class="container">
-        <div class="form-group">
-            @Html.LabelFor(p => p.Title)
-            @Html.TextBoxFor(p => p.Title, Model.Title, new { @class = "form-control" })
-            @Html.ValidationMessageFor(p => p.Title)
+<div class="row">
+    <div class="col-md-8" style="margin-bottom:20px;">
+        <div class="text-center">
+            <img src="@Model.ImageUrl()" alt="Alternate Text" class="img-details" />
         </div>
-        <div class="form-group">
-            @Html.LabelFor(p => p.Description)
-            @Html.TextAreaFor(p => p.Description, new { @class = "form-control", value = Model.Description })
-        </div>
-        @Html.HiddenFor(p=>p.Id, Model.Id)
+    </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-}
+    <div class="col-md-4" style="background:#222;">
+        @using (Html.BeginForm("Edit", "Posts", FormMethod.Post, new { style = "margin:8px 0px" }))
+        {
+            <form class="container">
+                <div class="form-group">
+                    @Html.LabelFor(p => p.Title)
+                    @Html.TextBoxFor(p => p.Title, Model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(p => p.Title)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(p => p.Description)
+                    @Html.TextAreaFor(p => p.Description, new { @class = "form-control", value = Model.Description })
+                </div>
+                @Html.HiddenFor(p => p.Id, Model.Id)
+
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                <a class="btn btn-danger pull-right" href="@Url.Action("Delete", "Posts", new { Id = Model.Id },null)">Xóa tranh</a>
+                <a class="btn btn-muted" href="@Url.Action("Details", "Posts", new { Id = Model.Id },null)">Quay lại</a>
+
+            </form>
+        }
+
+    </div>
+</div>
 
 @Html.ValidationSummary()

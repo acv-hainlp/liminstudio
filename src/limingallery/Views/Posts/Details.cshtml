@@ -6,15 +6,15 @@
     bool isLiked = false;
 }
 
-<div class="">
+<div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8" style="margin-bottom:20px;">
             <div class="text-center">
                 <img src="@Model.Post.ImageUrl()" alt="Alternate Text" class="img-details" />
             </div>
         </div>
 
-        <div class="col-md-4" style="background:#222">
+        <div class="col-md-4" style="background:#222;">
             <div class="container-fluid" style="padding:20px">
                 <img src="@Model.Post.User.AvatarUrl" class="img-responsive img-circle" style="max-height:50px; max-width:50px; display:inline" />
                 <a href="#" style="font-size:20px; margin-left:7px;">@Model.Post.User.NickName</a>
@@ -38,8 +38,7 @@
                 @{
                     if (Model.Post.UserId == User.Identity.GetUserId())
                     {
-                        <a class="btn btn-warning" href="@Url.Action("Edit", "Posts", new { Id = Model.Post.Id },null)">Edit</a>
-                        <a class="btn btn-danger" href="@Url.Action("Delete", "Posts", new { Id = Model.Post.Id },null)">Delete</a>
+                        <a class="btn btn-warning" href="@Url.Action("Edit", "Posts", new { Id = Model.Post.Id },null)">Sửa thông tin</a>
                     }
                 }
                 @*End Delete & Edit Post*@
@@ -60,19 +59,16 @@
                 <div style="margin-top: 5px">
                     @foreach (var comment in Model.Comments)
                     {
-                    <div>
-                        @if (comment.UserId == User.Identity.GetUserId())
-                        {
-                            <a href="@Url.Action("Delete","Comments", new { Id = comment.Id, PostId = Model.Post.Id})" class="text-muted"><i class="fa fa-trash-o"></i></a>
-                        }
-                        <span class="text-primary">@comment.User.NickName : </span>
-                        <span>@comment.Content</span><span class="text-right">
-                            @*@DateTime.Now.Subtract(comment.CreateOn).Days.ToString()*@
-                        </span>
-                    </div>
-                    <div>
-                        
-                    </div>
+                        <div>
+                            @if (comment.UserId == User.Identity.GetUserId())
+                            {
+                                <a href="@Url.Action("Delete","Comments", new { Id = comment.Id, PostId = Model.Post.Id})" class="text-muted"><i class="fa fa-trash-o"></i></a>
+                            }
+                            <span class="text-primary">@comment.User.NickName : </span>
+                            <span>@comment.Content</span><span class="text-right">
+                                @*@DateTime.Now.Subtract(comment.CreateOn).Days.ToString()*@
+                            </span>
+                        </div>
                     }
                 </div>
 
@@ -80,9 +76,5 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 

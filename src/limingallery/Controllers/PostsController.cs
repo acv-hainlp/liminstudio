@@ -33,6 +33,7 @@ namespace limingallery.Controllers
                 .Include(p=>p.User) //join public ApplicationUser User { get; set; }
                 .Include(p => p.Likes) // join Likes 
                 .Include(p=>p.Comments)
+                .OrderByDescending(p=>p.Id)
                 .ToList();
             return View(posts);
         }

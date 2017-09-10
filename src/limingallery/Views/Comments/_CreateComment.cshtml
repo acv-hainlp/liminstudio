@@ -1,6 +1,6 @@
 ﻿@model limingallery.ViewModels.PostCommentViewModes
 
-@using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { style="margin-top:10px;"}))
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { style = "margin-top:10px;" }))
 {
     <div class="form-group">
         @Html.TextAreaFor(p => p.Comment.Content, new { @class = "form-control" , placeholder="Comment.." })
