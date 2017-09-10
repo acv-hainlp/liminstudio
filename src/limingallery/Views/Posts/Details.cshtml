@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity; 
+﻿@using Microsoft.AspNet.Identity;
 @model limingallery.ViewModels.PostCommentViewModes
 @{
     ViewBag.Title = "Details";
@@ -16,7 +16,7 @@
 
         <div class="col-md-4" style="background:#222">
             <div class="container-fluid" style="padding:20px">
-                <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/21077659_1688767994466912_6543688498979365474_n.jpg?oh=83fc75309506e242aba6c5d934b72647&oe=5A49D598" class="img-responsive img-circle" style="max-height:50px; max-width:50px; display:inline"/>
+                <img src="@Model.Post.User.AvatarUrl" class="img-responsive img-circle" style="max-height:50px; max-width:50px; display:inline" />
                 <a href="#" style="font-size:20px; margin-left:7px;">@Model.Post.User.NickName</a>
                 <hr />
 
@@ -26,7 +26,7 @@
                     if (like.UserId == User.Identity.GetUserId()) { isLiked = true; }
                 }
 
-                @using (Html.BeginForm("Create", "Likes", FormMethod.Post, new { style="display:inline" }))
+                @using (Html.BeginForm("Create", "Likes", FormMethod.Post, new { style = "display:inline" }))
                 {
                     @Html.Hidden("postId", Model.Post.Id)
                     <button type="submit" class="btn @(!isLiked ? "btn-info" : "btn-info active")">@(!isLiked ? "Thích" : "Bỏ Thích")</button>
@@ -57,21 +57,29 @@
                 </div>
                 @Html.Partial("~/Views/Comments/_CreateComment.cshtml")
 
-                @foreach (var comment in Model.Comments)
-                {
+                <div style="margin-top: 5px">
+                    @foreach (var comment in Model.Comments)
+                    {
                     <div>
-                        <span class="bg-primary">@comment.User.NickName : </span><span>@comment.Content</span>
                         @if (comment.UserId == User.Identity.GetUserId())
                         {
-                        @Html.ActionLink("Delete", "Delete", "Comments", new { Id = comment.Id }, null)
+                            <a href="@Url.Action("Delete","Comments", new { Id = comment.Id, PostId = Model.Post.Id})" class="text-muted"><i class="fa fa-trash-o"></i></a>
                         }
+                        <span class="text-primary">@comment.User.NickName : </span>
+                        <span>@comment.Content</span><span class="text-right">
+                            @*@DateTime.Now.Subtract(comment.CreateOn).Days.ToString()*@
+                        </span>
                     </div>
-                }
+                    <div>
+                        
+                    </div>
+                    }
+                </div>
+
             </div>
         </div>
     </div>
 </div>
-
 
 
 

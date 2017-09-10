@@ -68,6 +68,8 @@ namespace limingallery.Models
         [Display(Name = "Nickname")]
         public string NickName { get; set; } //add more profile
 
+        public string AvatarUrl { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

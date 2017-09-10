@@ -43,7 +43,7 @@ namespace limingallery.Controllers
              new { controller = "Posts", action = "Details", Id = comment.PostId }));
         }
 
-        public ActionResult Delete(int id )
+        public ActionResult Delete(int id, int postId )
         {
             var comment = new Comment { Id = id };
 
@@ -52,7 +52,8 @@ namespace limingallery.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Posts");
+            return RedirectToAction("Details", new RouteValueDictionary(
+             new { controller = "Posts", action = "Details", Id = postId}));
 
         }
 

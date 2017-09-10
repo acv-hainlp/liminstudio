@@ -14,6 +14,8 @@ namespace limingallery.Models
         [StringLength(255)]
         public string NickName { get; set; } //add more profile
 
+        public string AvatarUrl { get; set; } = "/Content/Images/default-avatar.png";
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

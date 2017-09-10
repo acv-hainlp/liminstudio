@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201709010642452_SeedUserAndRoles.Designer.cs">
       <DependentUpon>201709010642452_SeedUserAndRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709100407193_User-Avatar-Model.cs" />
+    <Compile Include="Migrations\201709100407193_User-Avatar-Model.Designer.cs">
+      <DependentUpon>201709100407193_User-Avatar-Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -223,6 +227,7 @@
     <Content Include="Content\bootstrap-solar.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\default-avatar.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -311,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709010642452_SeedUserAndRoles.resx">
       <DependentUpon>201709010642452_SeedUserAndRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100407193_User-Avatar-Model.resx">
+      <DependentUpon>201709100407193_User-Avatar-Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
